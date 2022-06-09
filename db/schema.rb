@@ -22,11 +22,12 @@ ActiveRecord::Schema.define(version: 2022_06_05_131438) do
   end
 
   create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.bigint "application_id", null: false
     t.integer "number"
     t.integer "message_count", default: 0
-    t.bigint "application_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["application_id", "number"], name: "index_chats_on_application_id_and_number", unique: true
     t.index ["application_id"], name: "index_chats_on_application_id"
   end
 

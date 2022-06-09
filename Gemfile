@@ -14,6 +14,8 @@ gem 'puma', '~> 3.11'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.2'
 
+gem 'elasticsearch-model'
+
 # Use SideKiq queue 
 gem "sidekiq", "~> 5.2.8"
 gem "sidekiq-cron", "~> 1.1"

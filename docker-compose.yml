@@ -1,0 +1,41 @@
+version: '2'
+
+services:
+  mysql:
+    image: 'mysql:5.7'
+    restart: always
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_ROOT_PASSWORD: root
+    expose:
+      - "3306:3306"
+    volumes:
+      - ./tmp/db:/tmp/mysql
+
+  redis:
+    image: 'redis:5.0-alpine'
+    restart: always
+    environment:
+      REDIS_URL: redis
+    ports:
+      - '6379:6379'
+    command: redis-server
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    restart: always
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+
+  chat-api:
+    build: .
+    depends_on:
+      - "mysql"
+      - "redis"
+    volumes:
+      - ".:/chat-api"
+    ports:
+      - "3000:3000"

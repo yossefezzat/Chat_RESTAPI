@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_06_05_131438) do
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.integer "number"
     t.text "body"
+    t.string "app_key"
     t.bigint "chat_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
           end
         end
       end
-      get '/applications/:app_token/chats/:chat_number/search', to: 'search#searched'
+      get '/applications/:app_key/chats/:chat_number/search', to: 'search#searched'
     end
   end
 end

@@ -20,7 +20,7 @@ class Message < ApplicationRecord
 
     settings index: { number_of_shards: 1 } do
         mapping dynamic: false do
-            # indexes :number, type: :long
+            indexes :number, type: :long
             indexes :chat_id, type: :long
             indexes :app_key, type: :string
             indexes :body, analyzer: 'english'
@@ -41,7 +41,7 @@ class Message < ApplicationRecord
 end
 
 def as_json(options={})
-    super(options.merge({except: [:id, :chat_id]}))
+    super(options.merge({except: [:id, :chat_id, :app_key, :number]}))
 end
 
 def as_indexed_json(options = nil)

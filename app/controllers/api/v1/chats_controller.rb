@@ -1,48 +1,50 @@
 class Api::V1::ChatsController < ApplicationController
-
-    before_action :set_application
+# TODO: order chats by lastmessage : later
+    before_action :set_mutex
 
     def index
-        chats = @application.chats.all   # TODO sort by last message
-        render json: {data: chats}
+        app = Application.find_by_app_key(params[:app_key])   # TODO sort by last message
+        unless app.nil?
+            chats = app.chats.all
+            render json: {data: chats}
+        else
+            render json: {status: "ERROR", error: "App not found"}, status: :not_found
+        end 
     end
 
     def show
-        if @application
-            @chat = @application.chats.find_by!(number: params[:chat_number])
-            if @chat
-                render json: {chat: @chat}
+        app = Application.find_by_app_key(params[:app_key])
+        unless app.nil?
+            chat = app.chats.find_by(number: params[:chat_number])
+            if chat
+                render json: chat
             else
-                render json: {status: 'ERROR', message:'Chat not found', data: @chat}, status: :not_found
+                render json: {status: 'ERROR', error:'Chat not found'}, status: :not_found
             end
-            
         else
-            render json: {status: 'ERROR', message:'App not found', data: @application}, status: :not_found
+            render json: {status: 'ERROR', error: 'App not found'}, status: :not_found
         end
     end
     
- # TODO: check token existed in redis before get the counter
     def create
-        if @application
-            app_key = @application.app_key
-            chat_count = REDIS.HGET(app_key, "chats") # get chat count to add new one by updated count { without query mysql}
-            chat_count = chat_count.to_i+1
-            ChatCreationWorker.perform_async(app_key, chat_count)
-            REDIS.HINCRBY(app_key, "chats", 1)   # increment cached chat count by 1 to create new chat
-            render json: {chat_number: chat_count}
-        else
-            render json: {status: 'ERROR', message:'App not found', error: @application.error}, status: :not_found
+        app_key = params[:app_key]
+        app = Application.find_by_app_key(app_key)
+        @mutex.synchronize do
+            if app
+                chat_count = REDIS.HGET(app_key, "chats")
+                chat_count = chat_count.to_i+1
+                ChatCreationWorker.perform_async(app_key, chat_count)
+                REDIS.HINCRBY(app_key, "chats", 1)
+                render json: {status:"SUCCESS", chat_number: chat_count}, status: :created
+            else
+                render json: {status: "ERROR", error: "App not found"}, status: :not_found
+            end
         end
     end
 
     private
 
-    # def chat_params
-    #     params.permit(:number)
-    # end
-
-    def set_application
-        @application = Application.find_by_app_key!(params[:app_key])
+    def set_mutex
+        @mutex = Mutex.new
     end
-
 end

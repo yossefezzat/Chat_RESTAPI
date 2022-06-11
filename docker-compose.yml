@@ -32,6 +32,36 @@ services:
     env_file:
       - .env
 
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.4
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+
+  # kib01:
+  #   image: docker.elastic.co/kibana/kibana:7.17.4
+  #   container_name: kib01
+  #   ports:
+  #     - 5601:5601
+  #   environment:
+  #     ELASTICSEARCH_URL: http://es01:9200
+  #     ELASTICSEARCH_HOSTS: '["http://es01:9200"]'
+  #   networks:
+  #     - elastic
+
   myapp: 
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
@@ -40,6 +70,7 @@ services:
     depends_on:
       - db
       - redis
+      - es01
     links:
       - db
       - redis
@@ -50,3 +81,5 @@ services:
 volumes:
   db:
   redis:
+  data01:
+    driver: local

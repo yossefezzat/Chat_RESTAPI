@@ -16,12 +16,12 @@ default: &default
   database: <%= ENV['DB_NAME'] %>
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV['DB_HOST'] %>
+  host: <%= ENV['DB_HOST']%>
   # socket: /var/run/mysqld/mysqlx.sock
 
 development:
   <<: *default
-  database: chat_app_development
+  database: chat_app
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

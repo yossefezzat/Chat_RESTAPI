@@ -29,7 +29,6 @@ services:
     command: bundle exec sidekiq
     depends_on:
       - 'redis'
-      - 'db'
     env_file:
       - .env
 
@@ -44,11 +43,6 @@ services:
     links:
       - db
       - redis
-    environment:
-      DB_USER: root
-      DB_NAME: chat_app_development
-      DB_PASSWORD: root
-      DB_HOST: db
     env_file:
       - .env
     volumes: 

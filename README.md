@@ -1,4 +1,4 @@
-# README
+<!-- # README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
@@ -15,10 +15,33 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
+* Services (job queues, cache servers, search engines, etc.) -->
+## README
 
-* Services (job queues, cache servers, search engines, etc.)
+Ruby on Rails Chat-RestApi running on Docker using mysql, redis, sidekiq, elasticsearch.
 
-* Deployment instructions
+### Environment
 
-* ...
+* Ruby v2.7
+* Rails v5
+* Elasticsearch 7.17
+* Mysql 5.7
+* Redis 5.0
+* sideKiq 
+
+### Requirements
+
+* Docker
+* Docker compose
+
+### Run
+
+```bash
+$ docker compose up -d --build
+```
+
+
+
+
+
+

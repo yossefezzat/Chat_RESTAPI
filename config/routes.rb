@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :test
   namespace :api do
     namespace :v1 do
-      resources :applications, only: [:index, :show, :create], param: :app_key do
+      resources :applications, only: [:index, :show, :create, :update], param: :app_key do
         member do
           resources :chats, only: [:index, :show, :create], param: :chat_number do
             member do

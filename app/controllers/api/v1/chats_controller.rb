@@ -37,9 +37,9 @@ class Api::V1::ChatsController < ApplicationController
 
     private
 
-    def chat_params
-        params.permit(:number)
-    end
+    # def chat_params
+    #     params.permit(:number)
+    # end
 
     def set_application
         @application = Application.find_by_app_key!(params[:app_key])

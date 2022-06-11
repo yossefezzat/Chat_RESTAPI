@@ -18,11 +18,21 @@ class Api::V1::ApplicationsController < ApplicationController
         app = Application.new(application_params)
         if app.save
             REDIS.HSET(app.app_key, "chats", 0)
-            render json: {status: 'SUCCESS', message:'App created', data: app, redis: REDIS.HGET(app.app_key, "chats")}, status: :created
+            render json: {status: 'SUCCESS', message:'App created', data: app}, status: :created
         else
             render json: {status: 'ERROR', message:'App not saved', data: app.errors}, status: :unprocessable_entity
         end
     end
+
+    def update
+        app = Application.find_by_app_key(params[:app_key])
+        unless app.nil?
+            app.update(application_params)
+            render json: app
+        else
+            render json: {status: "ERROR", error: "App not found"}, status: :not_found
+        end
+      end
 
     private
 

@@ -1,41 +1,58 @@
 version: '2'
 
 services:
-  mysql:
-    image: 'mysql:5.7'
+  db:
+    image: "mysql:5.7"
     restart: always
     environment:
-      MYSQL_HOST: localhost
-      MYSQL_ROOT_PASSWORD: root
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_USERNAME: root
+     MYSQL_PASSWORD: root
+        - '3306:3306'
     expose:
-      - "3306:3306"
+      - '3306'
     volumes:
-      - ./tmp/db:/tmp/mysql
+      - db:/var/run/mysqld
+    ports:
+      - "33061:3306"
 
   redis:
-    image: 'redis:5.0-alpine'
-    restart: always
-    environment:
-      REDIS_URL: redis
-    ports:
-      - '6379:6379'
+    image: redis:5.0-alpine
     command: redis-server
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
 
   sidekiq:
     build: .
     command: bundle exec sidekiq
-    restart: always
     depends_on:
-      - redis
-    volumes:
-      - .:/app
+      - 'redis'
+      - 'db'
+    env_file:
+      - .env
 
-  chat-api:
+  myapp: 
     build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports: 
+      - "3001:3000"
     depends_on:
-      - "mysql"
-      - "redis"
-    volumes:
-      - ".:/chat-api"
-    ports:
-      - "3000:3000"
+      - db
+      - redis
+    links:
+      - db
+      - redis
+    environment:
+      DB_USER: root
+      DB_NAME: chat_app_development
+      DB_PASSWORD: root
+      DB_HOST: db
+    env_file:
+      - .env
+    volumes: 
+      - ".:/myapp"
+volumes:
+  db:
+  redis:

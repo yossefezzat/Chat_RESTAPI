@@ -48,11 +48,75 @@ Verb    URI Pattern
 ----    -----------
 
 GET     /api/v1/applications/
+
+<code>{
+    "status": "SUCCESS",
+    "data": [
+        {
+            "name": "<App Name>",
+            "app_key": "<App token>",
+            "chat_count": <Chat count>,
+            "created_at": "2022-06-11T20:04:31.000Z",
+            "updated_at": "2022-06-11T22:50:03.000Z"
+        }
+}</code>
+
 POST    /api/v1/applications/
+
+<code>{
+    "status": "SUCCESS",
+    "data": [
+        {
+            "name": "<Application name>",
+            "app_key": "<app token>",
+            "chat_count": <Chat count>,
+            "created_at": "2022-06-11T20:04:31.000Z",
+            "updated_at": "2022-06-11T22:50:03.000Z"
+        }
+}</code>
+
 PATCH   /api/v1/applications/{app_key}
 
+<code>{
+    "status": "SUCCESS",
+    "data": [
+        {
+            "name": "<Updated Application name>",
+            "app_key": "<app token>",
+            "chat_count": <Chat count>,
+            "created_at": "2022-06-11T20:04:31.000Z",
+            "updated_at": "2022-06-11T22:50:03.000Z"
+        }
+}</code>
+
 GET     /api/v1/applications/{app_key}/chats
+
+<code>{"data": [
+        {
+            "number": <Chat number>,
+            "message_count": <Message count>,
+            "created_at": "2022-06-11T20:29:38.000Z",
+            "updated_at": "2022-06-11T22:52:07.000Z"
+        },
+        {
+            "number": <Chat number>,
+            "message_count": <Message Count>,
+            "created_at": "2022-06-11T20:29:39.000Z",
+            "updated_at": "2022-06-11T20:29:39.000Z"
+        },
+]}</code>
+
 GET     /api/v1/applications/{app_key}/chats/{chat_number}
+
+<code>{"data": {
+            "number": 1,
+            "message_count": 15,
+            "created_at": "2022-06-11T20:29:38.000Z",
+            "updated_at": "2022-06-11T22:52:07.000Z"
+            }
+    }</code>
+
+
 POST    /api/v1/applications/{app_key}/chats
 
 GET     /api/v1/applications/{app_key}/chats/{chat_number}/messages

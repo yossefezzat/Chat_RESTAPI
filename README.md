@@ -48,8 +48,8 @@ Verb    URI Pattern
 ----    -----------
 
 GET     /api/v1/applications/
-
-<code>{
+<pre>
+    <code>{
     "status": "SUCCESS",
     "data": [
         {
@@ -59,11 +59,11 @@ GET     /api/v1/applications/
             "created_at": "2022-06-11T20:04:31.000Z",
             "updated_at": "2022-06-11T22:50:03.000Z"
         }
-}</code>
+    }</code>
 
 POST    /api/v1/applications/
-
-<code>{
+<pre>
+    <code>{
     "status": "SUCCESS",
     "data": [
         {
@@ -73,11 +73,12 @@ POST    /api/v1/applications/
             "created_at": "2022-06-11T20:04:31.000Z",
             "updated_at": "2022-06-11T22:50:03.000Z"
         }
-}</code>
+    }</code>
 
 PATCH   /api/v1/applications/{app_key}
 
-<code>{
+<pre>
+    <code>{
     "status": "SUCCESS",
     "data": [
         {
@@ -87,11 +88,11 @@ PATCH   /api/v1/applications/{app_key}
             "created_at": "2022-06-11T20:04:31.000Z",
             "updated_at": "2022-06-11T22:50:03.000Z"
         }
-}</code>
+    }</code>
 
 GET     /api/v1/applications/{app_key}/chats
-
-<code>{"data": [
+<pre>
+    <code>{"data": [
         {
             "number": <Chat number>,
             "message_count": <Message count>,
@@ -104,11 +105,11 @@ GET     /api/v1/applications/{app_key}/chats
             "created_at": "2022-06-11T20:29:39.000Z",
             "updated_at": "2022-06-11T20:29:39.000Z"
         },
-]}</code>
+    ]}</code>
 
 GET     /api/v1/applications/{app_key}/chats/{chat_number}
-
-<code>{"data": {
+<pre>
+    <code>{"data": {
             "number": 1,
             "message_count": 15,
             "created_at": "2022-06-11T20:29:38.000Z",

@@ -40,6 +40,27 @@ Ruby on Rails Chat-RestApi running on Docker using mysql, redis, sidekiq, elasti
 $ docker compose up -d --build
 ```
 
+### Chat API
+This service exposes these endpoints
+
+```
+Verb    URI Pattern
+----    -----------
+
+GET     /api/v1/applications/
+POST    /api/v1/applications/
+PATCH   /api/v1/applications/{app_key}
+
+GET     /api/v1/applications/{app_key}/chats
+GET     /api/v1/applications/{app_key}/chats/{chat_number}
+POST    /api/v1/applications/{app_key}/chats
+
+GET     /api/v1/applications/{app_key}/chats/{chat_number}/messages
+POST    /api/v1/applications/{app_key}/chats/{chat_number}/messages
+
+GET     /api/v1/applications/{app_key}/chats/{chat_number}/messages/search?query={keyword}
+```
+
 
 
 

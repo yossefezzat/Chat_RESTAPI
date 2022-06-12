@@ -45,7 +45,7 @@ GET     /api/v1/applications/{app_key}/chats/{chat_number}/messages/search?query
 ``` -->
 
 
-# CHAT REST API
+# CHAT REST API :speech_balloon:
 
 The REST API to the chat app is described below.
 

@@ -29,8 +29,6 @@ services:
     command: bundle exec sidekiq
     depends_on:
       - redis
-    volumes:
-      - .:/myapp
     environment:
       DB_USER: root
       DB_NAME: chat_app

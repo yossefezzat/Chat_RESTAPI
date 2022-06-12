@@ -21,7 +21,7 @@ Ruby on Rails Chat-RestApi running on Docker using mysql, redis, sidekiq, elasti
 ```bash
 $ docker compose up -d --build
 ```
-Docker will expose Port: `4000` run in Host: `localhost` :partying_face:
+Docker will expose Port: `3001` run in Host: `localhost` :partying_face:
 
 <!-- ### Chat API
 This service exposes these endpoints

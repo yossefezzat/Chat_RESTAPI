@@ -122,21 +122,21 @@ The REST API to the chat app is described below.
 
 ### Response
 
- {
-    "data": [
-        {
-            "number": 1,
-            "message_count": 4,
-            "created_at": "2022-06-11T16:55:46.000Z",
-            "updated_at": "2022-06-11T17:00:03.000Z"
-        },
-        {
-            "number": 2,
-            "message_count": 2,
-            "created_at": "2022-06-11T16:55:47.000Z",
-            "updated_at": "2022-06-11T18:52:03.000Z"
-        }
-}
+    {
+        "data": [
+            {
+                "number": 1,
+                "message_count": 4,
+                "created_at": "2022-06-11T16:55:46.000Z",
+                "updated_at": "2022-06-11T17:00:03.000Z"
+            },
+            {
+                "number": 2,
+                "message_count": 2,
+                "created_at": "2022-06-11T16:55:47.000Z",
+                "updated_at": "2022-06-11T18:52:03.000Z"
+            }
+    }
 
 
 ### Request
@@ -145,15 +145,15 @@ The REST API to the chat app is described below.
 
 ### Response
 
-{
-    "data": [
-        {
-            "number": 1,
-            "message_count": 4,
-            "created_at": "2022-06-11T16:55:46.000Z",
-            "updated_at": "2022-06-11T17:00:03.000Z"
-        },
-}
+    {
+        "data": [
+            {
+                "number": 1,
+                "message_count": 4,
+                "created_at": "2022-06-11T16:55:46.000Z",
+                "updated_at": "2022-06-11T17:00:03.000Z"
+            },
+    }
 
 
 ### Request
@@ -162,52 +162,40 @@ The REST API to the chat app is described below.
 
 ### Response
 
-{
-    "number": `<new chat number>`
-}
-
-### Response
-
-{
-    "data": [
-        {
-            "number": 1,
-            "message_count": 4,
-            "created_at": "2022-06-11T16:55:46.000Z",
-            "updated_at": "2022-06-11T17:00:03.000Z"
-        },
-}
-
+    {
+        "number": `<new chat number>`
+    }
 
 ### Request
 
 `GET  /api/v1/applications/{app_key}/chats/{chat_number}/messages`
 
 ### Response
-"STATUS": "SUCCESS",
-    "messages": [
-        {
-            "body": "message content",
-            "created_at": "2022-06-11T16:56:08.000Z",
-            "updated_at": "2022-06-11T16:56:08.000Z"
-        },
-        {
-            "body": "message content",
-            "created_at": "2022-06-11T16:56:11.000Z",
-            "updated_at": "2022-06-11T16:56:11.000Z"
-        },
-        {
-            "body": "message content",
-            "created_at": "2022-06-11T16:56:13.000Z",
-            "updated_at": "2022-06-11T16:56:13.000Z"
-        },
-        {
-            "body": "message content",
-            "created_at": "2022-06-11T16:56:17.000Z",
-            "updated_at": "2022-06-11T16:56:17.000Z"
-        }
-    ]
-}
+    {
+    "STATUS": "SUCCESS",
+        "messages": [
+            {
+                "body": "message content",
+                "created_at": "2022-06-11T16:56:08.000Z",
+                "updated_at": "2022-06-11T16:56:08.000Z"
+            },
+            {
+                "body": "message content",
+                "created_at": "2022-06-11T16:56:11.000Z",
+                "updated_at": "2022-06-11T16:56:11.000Z"
+            },
+            {
+                "body": "message content",
+                "created_at": "2022-06-11T16:56:13.000Z",
+                "updated_at": "2022-06-11T16:56:13.000Z"
+            },
+            {
+                "body": "message content",
+                "created_at": "2022-06-11T16:56:17.000Z",
+                "updated_at": "2022-06-11T16:56:17.000Z"
+            }
+        ]
+    }
 
 
 ### Request
@@ -215,15 +203,16 @@ The REST API to the chat app is described below.
 `POST  /api/v1/applications/{app_key}/chats/{chat_number}/messages`
 
 ### Response
-
-"STATUS": "SUCCESS",
     {
-        "number": `<message number>`
-        "body": "message content",
-        "created_at": "2022-06-11T16:56:08.000Z",
-        "updated_at": "2022-06-11T16:56:08.000Z"
+    "STATUS": "SUCCESS",
+        {
+            "number": `<message number>`
+            "body": "message content",
+            "created_at": "2022-06-11T16:56:08.000Z",
+            "updated_at": "2022-06-11T16:56:08.000Z"
+        }
     }
-}
+    }
 
 
 ### Request
@@ -232,11 +221,11 @@ The REST API to the chat app is described below.
 
 ### Response
 
-[
-    {
-        "body": "{keyword}",
-        "created_at": "2022-06-11T16:56:17.000Z",
-        "updated_at": "2022-06-11T16:56:17.000Z"
-    }
-]
+    [
+        {
+            "body": "{keyword}",
+            "created_at": "2022-06-11T16:56:17.000Z",
+            "updated_at": "2022-06-11T16:56:17.000Z"
+        }
+    ]
 
